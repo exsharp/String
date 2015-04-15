@@ -29,8 +29,11 @@ MyString::MyString(char *p){
 }
 
 MyString::MyString(MyString &str){
-	this->data = new char[str.Length()];
+	this->data = new char[str.Length()+10]();
 	this->length = str.length;
+	for (int i = 0; i < str.Length(); i++){
+		this->data[i] = str[i];
+	}
 }
 
 MyString::~MyString(){
@@ -47,15 +50,18 @@ bool MyString::Empty(){
 }
 
 int MyString::Compare(MyString str){
+	
+	//TO-DO
 
 	int pos = 0;
 	
 	while (this->data[pos] == str[pos]){
 		++pos;
-		if ()
+		if (this->length < pos&& str.Length() < pos)
+			break;
 	}
 
-	return pos+1;
+	return pos;
 }
 
 int MyString::Length(){
@@ -67,9 +73,31 @@ bool MyString::Clear(){
 	return true;
 }
 
+bool MyString::Concat(MyString str){
+	int TotalLength = 0;
+	TotalLength = this->length + str.Length();
+	
+	char *p = new char[TotalLength + 10]();
+
+	if (!p)
+		return false;
+
+	for (int i = 0; i < this->length; i++){
+		p[i] = this->data[i];
+	}
+	for (int i = this->length; i < TotalLength; i++){
+		p[i] = str[i];
+	}
+	delete[] this->data;
+	this->data = p;
+	p = NULL;
+
+	return true;
+}
+
 char& MyString::operator[](int pos){
 
-	if (pos>0&&pos < this->length)
+	if (pos>=0&&pos < this->length)
 		return this->data[pos];
 	else
 		throw std::string("out of bounds");
