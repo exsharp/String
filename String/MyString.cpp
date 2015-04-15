@@ -126,7 +126,47 @@ int Index(MyString S, MyString T, int pos){
 }
 
 bool Replace(MyString &S, MyString T, MyString V){
-	return false;
+
+	int len = S.length + 100;
+	char *newChars = new char[len];
+
+	int pos = CommonString(S.data, T.data, 1);
+	if (0 == pos)
+		return false;
+
+	int new_count = 0;
+	int s_count = 0;
+	int v_count = 0;
+	while (0 != pos){
+		while (s_count < pos){
+			newChars[new_count] = S.data[s_count];
+			new_count++;
+			s_count++;
+		}
+		while (v_count < V.length){
+			newChars[new_count] = V.data[v_count];
+			new_count++;
+			v_count++;
+		}
+		s_count = pos + T.length;
+
+		pos = CommonString(S.data, T.data, pos+1);
+		int next;
+		if (0 == pos)
+			next = S.length;
+		else
+			next = pos;
+
+		while (s_count < next){
+			newChars[new_count] = S.data[s_count];
+			s_count++;
+			new_count++;
+		}
+		v_count = 0;
+	}
+	newChars[new_count] = 0;
+
+	return true;
 }
 
 bool StrInsert(MyString &S, int pos, MyString T){

@@ -85,6 +85,7 @@ int main()
 			cout <<"Clear"<< (ClearString(T) ? "成功" : "失败") << endl;;
 		case 6:{
 				   //Concat
+				   system("cls");
 				   MyString S1, S2;
 				   char s1[50];
 				   char s2[50];
@@ -139,6 +140,19 @@ int main()
 				   else{
 					   cout << "从第"<<result<<"个字符开始" << endl;
 				   }
+				   break;
+		}
+		case 9:{
+				   MyString S;
+				   MyString T;
+				   MyString V;
+				   char s[] = "abcdefbcdghi";
+				   char t[] = "bcd";
+				   char v[] = "xyz";
+				   StrAssign(S, s);
+				   StrAssign(T, t);
+				   StrAssign(V, v);
+				   Replace(S, T, V);
 				   break;
 		}
 		case 10:{
