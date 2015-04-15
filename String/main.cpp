@@ -45,6 +45,7 @@ int main()
 		switch (select)
 		{
 		case 1:{
+		    system("cls");
 			MyString S;
 			cout << "输入要复制的字符串" << endl;
 			cin >> sour;
@@ -54,6 +55,7 @@ int main()
 			break;
 		}
 		case 2:
+			system("cls");
 			cout << (StrEmpty(T) ? "T为空" : "T不为空") << endl;
 			break;
 		case 3:{
@@ -76,13 +78,19 @@ int main()
 					   cout << "S1>S2" << endl;
 				   if (i < 0)
 					   cout << "S1<S2" << endl;
+				   DestroyString(S1);
+				   DestroyString(S2);
 				   break;
 		}
 		case 4:
+			system("cls");
+			Print(T);
 			cout << "T的长度是" << StrLength(T) << endl;
 			break;
 		case 5:
-			cout <<"Clear"<< (ClearString(T) ? "成功" : "失败") << endl;;
+			system("cls");
+			cout <<"Clear T"<< (ClearString(T) ? "成功" : "失败") << endl;;
+			break;
 		case 6:{
 				   //Concat
 				   system("cls");
@@ -102,6 +110,8 @@ int main()
 				   else{
 					   cout << "连接失败" << endl;
 				   }
+				   DestroyString(S1);
+				   DestroyString(S2);
 				   break;
 		}
 		case 7:{
@@ -120,6 +130,7 @@ int main()
 				   else{
 					   cout << "截取失败" << endl;
 				   }
+				   DestroyString(sub);
 				   break;
 		}
 		case 8:{
@@ -140,19 +151,40 @@ int main()
 				   else{
 					   cout << "从第"<<result<<"个字符开始" << endl;
 				   }
+				   DestroyString(S);
 				   break;
 		}
 		case 9:{
+				   system("cls");
 				   MyString S;
 				   MyString T;
 				   MyString V;
-				   char s[] = "abcdefbcdghi";
-				   char t[] = "bcd";
-				   char v[] = "xyz";
+				   //char s[] = "aabbbaaaabbbaaaabbb";
+				   //char t[] = "bbbb";
+				   //char v[] = "EEEE";
+				   char s[50];
+				   char t[50];
+				   char v[50];
+				   cout << "输入待处理的字符串" << endl;
+				   cin >> s;
+				   cout << "输入要被替换的字符串" << endl;
+				   cin >> t;
+				   cout << "输入要替换的字符串" << endl;
+				   cin >> v;
 				   StrAssign(S, s);
 				   StrAssign(T, t);
 				   StrAssign(V, v);
-				   Replace(S, T, V);
+				   if (Replace(S, T, V)){
+					   cout << "替换成功" << endl;
+					   cout << "替换后的字符串是" << endl;
+					   Print(S);
+				   }
+				   else{
+					   cout << "替换失败" << endl;
+				   }
+				   DestroyString(T);
+				   DestroyString(V);
+				   DestroyString(S);
 				   break;
 		}
 		case 10:{
@@ -172,26 +204,28 @@ int main()
 					}
 					else
 						cout << "插入失败" << endl;
+					DestroyString(S);
 					break;
 		}
 		case 11:{
-			system("cls");
-			int pos, len;
-			Print(T);
-			cout << "分别输入要开始删除的位置和长度" << endl;
-			cin >> pos;
-			cin >> len;
-			if (StrDelete(T, pos, len)){
-				cout << "删除成功" << endl;
-				Print(T);
-			}
-			else{
-				cout << "删除失败" << endl;
-			}
-			break;
+					system("cls");
+					int pos, len;
+					Print(T);
+					cout << "分别输入要开始删除的位置和长度" << endl;
+					cin >> pos;
+					cin >> len;
+					if (StrDelete(T, pos, len)){
+						cout << "删除成功" << endl;
+						Print(T);
+					}
+					else{
+						cout << "删除失败" << endl;
+					}
+					break;
 		}
 		default:
-			break;
+			DestroyString(T);
+			exit(1);
 		}
 	}
 }

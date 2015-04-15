@@ -122,7 +122,7 @@ bool SubString(MyString &Sub, MyString S, int pos, int len){
 int Index(MyString S, MyString T, int pos){
 	int i ;
 	i = CommonString(S.data, T.data, pos);
-	return i;
+	return i+1;
 }
 
 bool Replace(MyString &S, MyString T, MyString V){
@@ -149,22 +149,22 @@ bool Replace(MyString &S, MyString T, MyString V){
 			v_count++;
 		}
 		s_count = pos + T.length;
-
-		pos = CommonString(S.data, T.data, pos+1);
-		int next;
-		if (0 == pos)
-			next = S.length;
-		else
-			next = pos;
-
-		while (s_count < next){
-			newChars[new_count] = S.data[s_count];
-			s_count++;
-			new_count++;
-		}
 		v_count = 0;
+		pos = CommonString(S.data, T.data, pos+2);
 	}
+
+	while (s_count < S.length){
+		newChars[new_count] = S.data[s_count];
+		new_count++;
+		s_count++;
+	}
+
 	newChars[new_count] = 0;
+	if (S.data)
+		delete[] S.data;
+	
+	S.data = newChars;
+	S.length = new_count;
 
 	return true;
 }
@@ -256,7 +256,7 @@ int CommonString(char *S, char *T,int pos){
 	}
 
 	if (j >= T_len)
-		return i - T_len+1;
+		return i - T_len;
 	else{
 		return 0;
 	}
