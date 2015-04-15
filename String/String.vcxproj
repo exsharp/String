@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{8A879097-EA50-461F-9DE8-45E6E0BA42F3}</ProjectGuid>
+    <ProjectGuid>{49D4F5D0-7140-4108-8556-371EE303414A}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>String</RootNamespace>
   </PropertyGroup>
@@ -78,11 +78,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="StringPlus.h" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="MyString.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="StringPlus.cpp" />
+    <ClInclude Include="MyString.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
