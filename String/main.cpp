@@ -56,6 +56,33 @@ int main()
 		case 2:
 			cout << (StrEmpty(T) ? "T为空" : "T不为空") << endl;
 			break;
+		case 3:{
+				   system("cls");
+				   MyString S1;
+				   MyString S2;
+				   char s1[50];
+				   char s2[50];
+				   cout << "输入第一个字符串" << endl;
+				   cin >> s1;
+				   cout << "输入第二个字符串" << endl;
+				   cin >> s2;
+				   StrAssign(S1, s1);
+				   StrAssign(S2, s2);
+				   int i = 0;
+				   i = StrCompare(S1, S2);
+				   if (0 == i)
+					   cout << "S1==S2" << endl;
+				   if (i > 0)
+					   cout << "S1>S2" << endl;
+				   if (i < 0)
+					   cout << "S1<S2" << endl;
+				   break;
+		}
+		case 4:
+			cout << "T的长度是" << StrLength(T) << endl;
+			break;
+		case 5:
+			cout <<"Clear"<< (ClearString(T) ? "成功" : "失败") << endl;;
 		case 6:{
 				   //Concat
 				   MyString S1, S2;
@@ -94,23 +121,44 @@ int main()
 				   }
 				   break;
 		}
+		case 8:{
+				   //Index
+				   system("cls");
+				   Print(T);
+				   MyString S;
+				   int pos;
+				   cout << "输入要匹配的字串" << endl;
+				   cin >> sour;
+				   cout << "输入要开始匹配的位置" << endl;
+				   cin >> pos;
+				   StrAssign(S, sour);
+				   int result = Index(T, S, pos);
+				   if (0 == result){
+					   cout << "匹配失败" << endl;
+				   }
+				   else{
+					   cout << "从第"<<result<<"个字符开始" << endl;
+				   }
+				   break;
+		}
 		case 10:{
-			system("cls");
-			MyString S;
-			int pos;
-			Print(T);
-			cout << "输入要插入的字符串" << endl;
-			cin >> sour;
-			cout << "输入要插入的位置" << endl;
-			cin >> pos;
-			StrAssign(S, sour);
-			if (StrInsert(T, pos, S)){
-				cout << "插入成功" << endl;
-				Print(T);
-			}
-			else
-				cout << "插入失败" << endl;
-			break;
+					//strInsert
+					system("cls");
+					MyString S;
+					int pos;
+					Print(T);
+					cout << "输入要插入的字符串" << endl;
+					cin >> sour;
+					cout << "输入要插入的位置" << endl;
+					cin >> pos;
+					StrAssign(S, sour);
+					if (StrInsert(T, pos, S)){
+						cout << "插入成功" << endl;
+						Print(T);
+					}
+					else
+						cout << "插入失败" << endl;
+					break;
 		}
 		case 11:{
 			system("cls");

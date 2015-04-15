@@ -43,11 +43,13 @@ bool StrEmpty(MyString S){
 }
 
 int StrCompare(MyString S, MyString T){
-	while (S.data == T.data)
-	{
 
+	while (*S.data&&*T.data&&*S.data == *T.data)
+	{
+		++S.data;
+		++T.data;
 	}
-	return true;
+	return *S.data - *T.data;
 }
 
 int StrLength(MyString S){
@@ -117,6 +119,16 @@ bool SubString(MyString &Sub, MyString S, int pos, int len){
 	return true;
 }
 
+int Index(MyString S, MyString T, int pos){
+	int i ;
+	i = CommonString(S.data, T.data, pos);
+	return i;
+}
+
+bool Replace(MyString &S, MyString T, MyString V){
+	return false;
+}
+
 bool StrInsert(MyString &S, int pos, MyString T){
 	
 	if (pos <= 0)
@@ -174,7 +186,7 @@ bool DestroyString(MyString &S){
 	return true;
 }
 
-int ConnonString(char *S, char *T,int pos){
+int CommonString(char *S, char *T,int pos){
 	int i = --pos;
 	int j = 0;
 
@@ -204,7 +216,7 @@ int ConnonString(char *S, char *T,int pos){
 	}
 
 	if (j >= T_len)
-		return i - T_len;
+		return i - T_len+1;
 	else{
 		return 0;
 	}
